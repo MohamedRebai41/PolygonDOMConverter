@@ -1,6 +1,9 @@
 import datetime
 import os
 import time
+from datetime import datetime, timezone
+
+# Get current UTC time without milliseconds
 import typing
 
 import yaml
@@ -42,8 +45,7 @@ def prepare_problems_yaml(path: str, contest: Contest):
 
 
 def current_time_iso_8601():
-    return time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime())
-
+    return datetime.now(timezone.utc).isoformat(timespec='seconds')
 
 def prepare_contest_yaml(path: str, contest: Contest):
     contest_info = {"duration": "5:00:00",
